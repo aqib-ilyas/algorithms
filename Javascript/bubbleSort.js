@@ -3,7 +3,7 @@
 // Time Complexity: O(n^2)
 // Space Complexity: O(1)
 
-const bubbleSort = (data) => {
+const bubbleSort = (data, ascending=true) => {
 
     for(let i = 0; i < data.length; i++){
         // using this flag to keep track whether array is sorted or not
@@ -12,7 +12,13 @@ const bubbleSort = (data) => {
 
         for(let j = 0; j < data.length - i - 1; j++){
             // compare and swap adjacent items in the data array
-            if(data[j] > data[j+1]){
+            if(data[j] > data[j+1] && ascending){
+                let temp = data[j];
+                data[j] = data[j+1];
+                data[j+1] = temp;
+                isSorted = true;
+            }
+            else if(data[j] < data[j+1] && !ascending){
                 let temp = data[j];
                 data[j] = data[j+1];
                 data[j+1] = temp;
@@ -26,5 +32,5 @@ const bubbleSort = (data) => {
 }
 
 var array = [-2, -4, 0, 5, 9, 1]
-bubbleSort(array);
+bubbleSort(array, ascending=false);
 console.log(array);
